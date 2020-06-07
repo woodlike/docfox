@@ -96,6 +96,7 @@ export async function createDocs(): Promise<Map<string, Docs[]>> {
       frontmatter: { menu, name, title },
     };
 
+    // eslint-disable-next-line mdx/no-unused-expressions
     docs.has(name) && Array.isArray(docs.get(name))
       ? docs.set(name, [...(docs.get(name) as Docs[]), content])
       : docs.set(name, [content]);
