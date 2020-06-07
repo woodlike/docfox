@@ -29,12 +29,9 @@ export interface Position {
 
 export const getDisplay = (mdxAst: MDXAst): string => {
   const node = mdxAst.children.find(
-    ({ type, value }) =>
-      typeof value === 'string' &&
-      value.includes('_display') &&
-      type === 'export',
-  );
-  return node && node.value ? node.value : '';
+    ({ value }) => typeof value === 'string' && value.includes('_display'));
+
+  return node && node.value ? node.value.replace(/(^(export(\s|)const(\s|)_display(\s|)=(\s|))|^(const(\s|)_display(\s|)=(\s|))|`+|;$)/g, '') : '';
 };
 
 export const getFrontmatter = (mdxAst: MDXAst): Frontmatter => {
