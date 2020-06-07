@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Link } from 'docz';
+
 import { Docs } from '@wdlk/components';
 
 export const Logo: React.FC = (): JSX.Element => {
   return (
-    <Link to="/">
+    <div>
       <Docs.Logo
         minX={0}
         minY={0}
@@ -15,8 +15,8 @@ export const Logo: React.FC = (): JSX.Element => {
         desc="Discover the guidelines and thought processes behind our APIs and design system approach."
         path={<Docs.Path />}
       />
-    </Link>
+    </div>
   );
 };
 
-Logo.displayName = 'DoczLogo';
+Logo.displayName = 'Logo';

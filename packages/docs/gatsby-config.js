@@ -1,3 +1,3 @@
 module.exports = {
-  plugins: ['@wdlk/gatsby-theme-docs'],
+  plugins: ['gatsby-theme-docs'],
 };

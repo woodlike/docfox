@@ -1,6 +1,6 @@
 {
-  "name": "@wdlk/docs",
-  "version": "1.0.0",
+  "name": "docs",
+  "version": "0.1.0",
   "private": true,
   "description": "@wdlk APIs, components, and design systems documentation.",
   "repository": "https://github.com/woodlike/wdlk",
@@ -15,7 +15,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@wdlk/gatsby-theme-docs": "1.0.0",
+    "gatsby-theme-docs": "0.1.0",
     "gatsby": "^2.21.36",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

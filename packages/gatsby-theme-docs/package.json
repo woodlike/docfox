@@ -1,6 +1,6 @@
 {
-  "name": "@wdlk/gatsby-theme-docs",
-  "version": "1.0.0",
+  "name": "gatsby-theme-docs",
+  "version": "0.1.0",
   "private": false,
   "description": "Turn your Gatsby project into visual and interactive technical documentation.",
   "repository": "https://github.com/woodlike/wdlk",
@@ -21,6 +21,7 @@
     "@mdx-js/react": "^1.6.1",
     "@theme-ui/components": "^0.3.1",
     "@theme-ui/presets": "^0.3.0",
+    "@types/theme-ui": "^0.3.2",
     "@wdlk/components": "2.0.0",
     "@wdlk/hooks": "^1.0.0",
     "gatsby-plugin-mdx": "^1.2.6",
