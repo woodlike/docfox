@@ -1,6 +1,4 @@
-import { Reporter } from 'gatsby';
-
-import { gatsby } from '../../__mocks__';
+const gatsby = require('../../__mocks__/gatsby');
 import { slugify, hyphenize, Frontmatter } from '..';
 
 describe('utils', () => {
