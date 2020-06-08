@@ -21,13 +21,20 @@
     "type-check": "yarn workspace @wdlk/store type-check"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "2.20.0",
+    "@babel/preset-typescript": "^7.10.1",
+    "@typescript-eslint/eslint-plugin": "3.2.0",
     "@typescript-eslint/parser": "2.20.0",
+    "babel-preset-gatsby": "^0.4.8",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-mdx": "^1.7.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "7.18.3"
+    "eslint-plugin-react": "7.18.3",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "jest": "^26.0.1",
+    "typescript": "^3.9.5",
+    "typescript-eslint": "^0.0.1-alpha.0"
   }
 }

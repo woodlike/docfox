@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         node: [ '10', '12' ]
-    name: Node ${{ matrix.node }} sample
+    name: Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
@@ -29,6 +29,5 @@ jobs:
       - run: npm install
       - run: npm run lint:theme
       - run: npm run test:theme
-      - run: npm run build:theme
 
 

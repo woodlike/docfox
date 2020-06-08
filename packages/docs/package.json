@@ -15,9 +15,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "gatsby-theme-docs": "0.1.0",
     "gatsby": "^2.21.36",
+    "gatsby-theme-docs": "0.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.5"
   }
 }
