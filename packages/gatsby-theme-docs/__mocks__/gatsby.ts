@@ -1,6 +1,4 @@
-const gatsby = jest.requireActual('gatsby');
-
-module.exports = {
+export const gatsby = {
   ...jest.requireActual('gatsby'),
   graphql: jest.fn(),
   StaticQuery: jest.fn(),

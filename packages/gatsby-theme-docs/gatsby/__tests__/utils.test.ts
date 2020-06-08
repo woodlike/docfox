@@ -1,4 +1,4 @@
-const gatsby = require('../../__mocks__/gatsby');
+import { gatsby } from '../../__mocks__';
 import { slugify, hyphenize, Frontmatter } from '..';
 
 describe('utils', () => {
