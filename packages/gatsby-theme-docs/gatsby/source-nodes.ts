@@ -2,7 +2,7 @@ import { Actions } from 'gatsby';
 import { v3 as uuidv3 } from 'uuid';
 import crypto from 'crypto';
 
-import { createDocs } from '.';
+import { document } from '.';
 
 export interface SourceNodesProps {
   actions: Actions;
@@ -12,7 +12,7 @@ export const sourceNodes = async ({
   actions,
 }: SourceNodesProps): Promise<void> => {
   const { createNode } = actions;
-  const docs = await createDocs();
+  const docs = await document.create();
 
   for await (const name of docs.keys()) {
     const doc = docs.get(name)?.find((_, idx) => idx === 0);

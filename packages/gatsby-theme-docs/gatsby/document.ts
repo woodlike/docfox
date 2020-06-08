@@ -13,9 +13,9 @@ const { createCompiler } = require('@mdx-js/mdx');
 const mdx = require('@mdx-js/mdx');
 const BabelPluginPluckImports = require('babel-plugin-pluck-imports');
 
-export type Doc = Docs & NodeInput & { slug: string };
+export type NodeDocument = Document & NodeInput & { slug: string };
 
-export interface Docs {
+export interface Document {
   readonly id: string;
   readonly body: string;
   readonly display: string;
@@ -68,8 +68,8 @@ async function* collectContent(): AsyncGenerator<string, void, undefined> {
   }
 }
 
-export async function createDocs(): Promise<Map<string, Docs[]>> {
-  const docs = new Map<string, Docs[]>();
+export async function create(): Promise<Map<string, Document[]>> {
+  const docs = new Map<string, Document[]>();
   const collectedData = await collectContent();
 
   for await (const data of collectedData) {
@@ -98,7 +98,7 @@ export async function createDocs(): Promise<Map<string, Docs[]>> {
 
     // eslint-disable-next-line mdx/no-unused-expressions
     docs.has(name) && Array.isArray(docs.get(name))
-      ? docs.set(name, [...(docs.get(name) as Docs[]), content])
+      ? docs.set(name, [...(docs.get(name) as Document[]), content])
       : docs.set(name, [content]);
   }
   return docs;
