@@ -31,7 +31,8 @@ export const getDisplay = (mdxAst: MDXAst): string => {
   const node = mdxAst.children.find(
     ({ value }) => typeof value === 'string' && value.includes('_display'));
 
-  return node && node.value ? node.value.replace(/(^(export(\s|)const(\s|)_display(\s|)=(\s|))|^(const(\s|)_display(\s|)=(\s|))|`+|;$)/g, '') : '';
+  const regex = /(^(export(\s|)const(\s|)_display(\s|)=(\s`|`))|^(const(\s|)_display(\s|)=(\s`|`))|(`;))/g;
+  return node && node.value ? node.value.replace(regex, '') : '';
 };
 
 export const getFrontmatter = (mdxAst: MDXAst): Frontmatter => {

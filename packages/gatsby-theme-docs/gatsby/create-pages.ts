@@ -1,20 +1,22 @@
 import { resolve } from 'path';
 import { Actions, Reporter } from 'gatsby';
-import { Doc } from '.';
+import { NodeDocument } from '.';
 
 export interface CreatePagesArgs {
-  actions: Actions;
+  readonly actions: Actions;
+  readonly reporter: Reporter;
   graphql: (query: string) => Promise<DocQuery>;
-  reporter: Reporter;
 }
 
 interface DocQuery {
-  data: {
-    allDoc: {
-      nodes: Pick<Doc, 'id' | 'slug'>[];
-    };
-  };
-  errors: boolean;
+  readonly data: DocQueryData;
+  readonly errors: boolean;
+}
+
+export interface DocQueryData {
+  readonly allDoc: {
+    readonly nodes: Pick<NodeDocument, 'id' | 'slug'>[];
+  }
 }
 
 export const createPages = async ({

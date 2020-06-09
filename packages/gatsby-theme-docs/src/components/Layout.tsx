@@ -5,13 +5,13 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql, Link } from 'gatsby';
 
 import { SectionLayout } from '.';
-import { Docs, Doc } from '../../gatsby';
+import { Document, NodeDocument } from '../../gatsby';
 
 const shortcodes = { Link };
 
 interface DocQuery {
   readonly data: {
-    readonly doc: Doc;
+    readonly doc: NodeDocument;
   };
 }
 
@@ -20,7 +20,7 @@ export default function DocPageTemplate({ data }: DocQuery): JSX.Element {
   const { doc } = data;
   return (
     <MDXProvider components={shortcodes}>
-      {(doc.docs as Docs[]).map((doc: Docs) => (
+      {(doc.docs as Document[]).map((doc: Document) => (
         <SectionLayout
           key={doc.id}
           content={<MDXRenderer>{doc.body}</MDXRenderer>}>
