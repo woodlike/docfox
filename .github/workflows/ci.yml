@@ -27,10 +27,11 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Install
-        run: |
-          yarn install
+        run: yarn install
+
+    - name: Lint
+        run: yarn lint:theme
 
     - name: Test
-        run: |
-          yarn lint:theme
-          yarn test:theme
+        run: yarn test:theme
+
