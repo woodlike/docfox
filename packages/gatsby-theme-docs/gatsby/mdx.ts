@@ -27,20 +27,25 @@ export interface Position {
   offset: number;
 }
 
-export const getDisplay = (mdxAst: MDXAst): string => {
+export function getDisplay(mdxAst: MDXAst): string {
   const node = mdxAst.children.find(
-    ({ value }) => typeof value === 'string' && value.includes('_display'));
+    ({ value }) => typeof value === 'string' && value.includes('_display'),
+  );
 
   const regex = /(^(export(\s|)const(\s|)_display(\s|)=(\s`|`))|^(const(\s|)_display(\s|)=(\s`|`))|(`;))/g;
   return node && node.value ? node.value.replace(regex, '') : '';
-};
+}
 
-export const getFrontmatter = (mdxAst: MDXAst): Frontmatter => {
+export function getFrontmatter(mdxAst: MDXAst): Frontmatter {
   const node = mdxAst.children.find(node => node.type === 'yaml' && node.value);
   return node && node.value
     ? yaml.parse(node.value)
     : { menu: '', name: '', title: '' };
-};
+}
+
+export function extractFrontmatter(data: string): string {
+  return data.replace(/(^---\s*\n([a-z]*:\s*.*\n){1,5}---)/gim, '');
+}
 
 export const findNodeByType = (mdxAst: MDXAst, type: string): MDXAstNode | {} =>
   mdxAst.children.find(node => node.type === type && node.value) || {};

@@ -1,6 +1,14 @@
-import { mdxAst } from '../../__mocks__';
-import { findNodeByType, getDisplay } from '..';
-import { MDXAst } from '../mdx';
+import {
+  dataNoFrontMatter,
+  mdxAst,
+  dataFrontMatterComplete,
+  resultDataComplete,
+  resultVideoName,
+  dataFrontMatterVideoName,
+  resultNameOnly,
+  dataFrontMatterNameOnly,
+} from '../../__mocks__';
+import { extractFrontmatter, findNodeByType, getDisplay, MDXAst } from '..';
 
 describe('MDX utils', () => {
   describe('findeNodeByType', () => {
@@ -26,11 +34,32 @@ describe('MDX utils', () => {
     });
   });
 
+  describe('extractFrontmatter()', () => {
+    it('should return the same input string as an output', () => {
+      expect(extractFrontmatter(dataNoFrontMatter)).toMatch(dataNoFrontMatter);
+    });
+    it('should remove the complete  Frontmatter (name, title, menu)', () => {
+      expect(extractFrontmatter(dataFrontMatterComplete)).toMatch(
+        resultDataComplete,
+      );
+    });
+    it('should remove the complete  Frontmatter (name, menu)', () => {
+      expect(extractFrontmatter(dataFrontMatterVideoName)).toMatch(
+        resultVideoName,
+      );
+    });
+    it('should remove the complete  Frontmatter (name)', () => {
+      expect(extractFrontmatter(dataFrontMatterNameOnly)).toMatch(
+        resultNameOnly,
+      );
+    });
+  });
+
   describe('getDisplay', () => {
     it('should return an empty string on missing AST node', () => {
       expect(getDisplay({ children: [{}] } as MDXAst)).toBe('');
       expect(
-        getDisplay({
+        getDisplay(({
           children: [
             {},
             {
@@ -51,7 +80,7 @@ describe('MDX utils', () => {
               },
             },
           ],
-        } as MDXAst),
+        } as unknown) as MDXAst),
       ).toBe('');
     });
 
@@ -66,7 +95,9 @@ describe('MDX utils', () => {
             },
           ],
         } as unknown) as MDXAst),
-      ).toMatch(`\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`);
+      ).toMatch(
+        `\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`,
+      );
     });
 
     it('should return a sanitized code string for an inline _display', () => {
@@ -79,7 +110,9 @@ describe('MDX utils', () => {
             },
           ],
         } as unknown) as MDXAst),
-      ).toMatch(`\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`);
+      ).toMatch(
+        `\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`,
+      );
     });
 
     it('should return a sanitized code string for an inline _display with out an ending ;', () => {
@@ -92,7 +125,9 @@ describe('MDX utils', () => {
             },
           ],
         } as unknown) as MDXAst),
-      ).toMatch(`\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`);
+      ).toMatch(
+        `\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`,
+      );
     });
 
     it('should return a sanitized code string for an inline _display without ending spaces', () => {
@@ -105,7 +140,9 @@ describe('MDX utils', () => {
             },
           ],
         } as unknown) as MDXAst),
-      ).toMatch(`\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`);
+      ).toMatch(
+        `\n<Heading as="h1" size="xxl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h2" size="xl">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h3" size="l">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h4" size="m">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="s">\n  Healing Flowers Collection\n</Heading>\n<Heading as="h5" size="xs">\n  Healing Flowers Collection\n</Heading>\n`,
+      );
     });
   });
 });

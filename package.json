@@ -6,6 +6,9 @@
   "workspaces": {
     "packages": [
       "packages/*"
+    ],
+    "nohoist": [
+      "**/@types/jest"
     ]
   },
   "scripts": {
