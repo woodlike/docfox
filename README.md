@@ -1,8 +1,8 @@
 # Docs
 
-> Turn your Gatsby project into visual and interactive technical documentation.
-
 [![Actions Status](https://github.com/woodlike/docs/workflows/CI/badge.svg)](https://github.com/woodlike/docs/actions)
+
+> Turn your Gatsby project into visual and interactive technical documentation.
 
 ## Motivation
 

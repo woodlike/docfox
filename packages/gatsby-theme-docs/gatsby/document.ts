@@ -4,7 +4,14 @@ import { v3 as uuidv3 } from 'uuid';
 import vfile from 'vfile';
 import detectFrontmatter from 'remark-frontmatter';
 
-import { createOptions, getDisplay, getFrontmatter, readDir, read } from '.';
+import {
+  createOptions,
+  getDisplay,
+  getFrontmatter,
+  readDir,
+  read,
+  extractFrontmatter,
+} from '.';
 
 // Using require to avoid error TS7016:
 // Could not find a declaration file for module
@@ -49,21 +56,18 @@ async function* collectContent(): AsyncGenerator<string, void, undefined> {
   }
 }
 
-const mdxCompiler = createCompiler({
-  remarkPlugins: [detectFrontmatter],
-});
-
 export async function transformCode(data: string): Promise<CodeDocument> {
   try {
-    const jsx = await mdx(data);
-    const mdxAst = mdxCompiler.parse(vfile(data));
+    const compiler = createCompiler({ remarkPlugins: [detectFrontmatter] });
+    const mdxAst = compiler.parse(vfile(data));
+
+    const jsx = await mdx(extractFrontmatter(data));
     const { code } = babel.transform(jsx, createOptions());
-    const { menu, name, title } = getFrontmatter(mdxAst);
 
     return {
       body: code,
       display: getDisplay(mdxAst),
-      frontmatter: { menu, name, title },
+      frontmatter: getFrontmatter(mdxAst),
     };
   } catch (err) {
     console.error(`🚨[ERROR] transforming content data: ${err}`);
