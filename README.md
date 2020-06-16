@@ -4,7 +4,7 @@
 
 ## Description
 
-Docs is a Gatsby theme that programmatically generates polished and interactive technical documentation using MDX and Babel.
+Docs is a Gatsby theme that programmatically generates visually polished and interactive technical documentation using MDX and Babel.
 
 ## 📚Documentation
 
