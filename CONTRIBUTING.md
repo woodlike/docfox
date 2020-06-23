@@ -1,12 +1,14 @@
 # Contributing
 
-## Development
+Thanks for taking the time and thinking about contributing. We look forward to your ideas, feedback, and PRs!
+
+## Prerequisites
 
 🚀 Node.js >=10
 🌲 Git
 🐈 yarn >= 1.12
 
-### Getting started
+## Getting started
 
 ```sh
 git clone git@github.com:woodlike/docs.git
@@ -15,7 +17,7 @@ cd docs
 yarn
 ```
 
-### Commands
+## Commands
 
 The list of most important commands to work with the selected workspace.
 

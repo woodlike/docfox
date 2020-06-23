@@ -8,7 +8,7 @@ Docs is a Gatsby theme that programmatically generates visually polished and int
 
 ## 📚Documentation
 
-WIP
+WIP: Include documentation link.
 
 ## 🗺 Roadmap
 
@@ -19,6 +19,7 @@ WIP
 ## 🙏Support
 
 [Discord](https://discord.gg/u2rucA)
+[Slack](https://join.slack.com/t/docs-lyq4679/shared_invite/zt-f4ui13on-Nk1EZFUJVXnC_JiXc~U5pw)
 
 ## 📝 License
 
