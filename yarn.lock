@@ -3724,10 +3724,10 @@ babel-plugin-pluck-imports@0.0.1:
   resolved "https://registry.yarnpkg.com/babel-plugin-pluck-imports/-/babel-plugin-pluck-imports-0.0.1.tgz#e5a68b33c66213c62499c0be620ab6583055d9c0"
   integrity sha512-AkPrrNHUBOckkZgHdF6EY8VVkcwbOnS9IUPif9le3Xw0FquTYeyBLRiMo5P9luA3Iy/qzouMk8IoDSL8cozq8A==
 
-babel-plugin-remove-export-keywords@1.6.5:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-remove-export-keywords/-/babel-plugin-remove-export-keywords-1.6.5.tgz#632bf4fddfaba1f005c53bdc9c0b36ea77c71a75"
-  integrity sha512-D7ZJF7vdwOkOlpU0i1xMgCxzLD0EwB2NwxcAP/UHiK32HJBnnJa3lRn3eBHtBJwqUF/NgOQB5Z6lmjVAsgbo5w==
+babel-plugin-remove-export-keywords@1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/babel-plugin-remove-export-keywords/-/babel-plugin-remove-export-keywords-1.6.6.tgz#9a3f4b9a1fe785cb30a9457ee5959619c3c5041e"
+  integrity sha512-XX29ho1+U0Uh5R1IBcdbi1uv2FQ0LyoivxyOlQLMa1oCNNPnToBFsgGC6gmj5JHxaBFt1E5VQZ5uyC/THBc4UQ==
 
 babel-plugin-remove-graphql-queries@^2.9.5:
   version "2.9.5"
