@@ -16,7 +16,6 @@ export const sourceNodes = async ({
 
   for await (const name of docs.keys()) {
     const doc = docs.get(name)?.find((_, idx) => idx === 0);
-
     createNode({
       name,
       id: uuidv3(name, '670a67d2-a059-11ea-bb37-0242ac130002'),

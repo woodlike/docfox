@@ -6,6 +6,7 @@ export * from './document';
 export * from './file';
 export * from './mdx';
 export * from './pre-bootstrap';
+export * from './resolvers';
 export * from './schema';
 export * from './source-nodes';
 export * from './utils';

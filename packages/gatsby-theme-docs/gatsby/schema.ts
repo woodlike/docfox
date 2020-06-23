@@ -31,6 +31,17 @@ export const createSchema = ({ actions }: CreateSchemaProps): void => {
       menu: String!
       title: String
     }
+    type MenuCollection implements Node @dontInfer {
+      collection: [Menu!]!
+    }
+    type Menu {
+      name: String!
+      items: [MenuItem!]!
+    }
+    type MenuItem {
+      name: String!
+      slug: String!
+    }
     `,
   ];
   createTypes(typeDefs);
