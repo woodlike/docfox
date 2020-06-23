@@ -2910,10 +2910,10 @@
   dependencies:
     wonka "^4.0.14"
 
-"@wdlk/components@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@wdlk/components/-/components-2.0.0.tgz#eeafaf0042bf16c9de5208f3b67a31049b764ad0"
-  integrity sha512-OPsxznRB7YQI3w8LoNTI/t+KZ1PxoJb0fjo9mh6e5BeYJ2rNI3KITZjsFv1YXBtb79n7y0/sVsEGbtwvPGoUZA==
+"@wdlk/components@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@wdlk/components/-/components-2.2.4.tgz#0023fd9bfe79aaa7f8fff3ae0c3aecfa6a45c6d3"
+  integrity sha512-TXztf0i+Z0NoKKkmSx7fZNU9ZSQN/d42VerYo76z0ProK9JG0t+Aad6jfYr7DlRY9pjjaKtnvEBGxK+bdezfsQ==
   dependencies:
     "@emotion/core" "^10.0.22"
     "@theme-ui/components" "^0.3.1"
