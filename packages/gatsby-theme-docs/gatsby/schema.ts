@@ -1,6 +1,4 @@
 import { Actions, Reporter } from 'gatsby';
-import { NodeDocument } from '.';
-import { slugify } from './utils';
 
 export interface CreateSchemaProps {
   actions: Actions;
@@ -46,16 +44,3 @@ export const createSchema = ({ actions }: CreateSchemaProps): void => {
   ];
   createTypes(typeDefs);
 };
-
-export const createSlug = ({
-  createResolvers,
-  reporter,
-}: CreateSlugProps): void =>
-  createResolvers({
-    Doc: {
-      slug: {
-        resolve: async ({ frontmatter }: NodeDocument): Promise<string> =>
-          slugify(frontmatter, reporter),
-      },
-    },
-  });
