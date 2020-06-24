@@ -18,7 +18,6 @@ export const createSchema = ({ actions }: CreateSchemaProps): void => {
       frontmatter: Frontmatter!
       docs: [Docs!]!
       slug: String!
-      foo: String!
     }
     type Docs {
       id: ID!
@@ -31,7 +30,7 @@ export const createSchema = ({ actions }: CreateSchemaProps): void => {
       title: String
     }
     type MenuCollection implements Node @dontInfer {
-      collection: [Menu!]!
+      collection: [Int!]!
     }
     type Menu {
       name: String!

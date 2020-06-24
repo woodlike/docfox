@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Reporter } from 'gatsby';
 import { NodeDocument, slugify } from '.';
 
@@ -21,18 +20,12 @@ export function createSlugResolver(reporter: Reporter): SlugResolver {
   };
 }
 
-export function createMenuResolver(): any {
+export function createMenuResolver(): {} {
   return {
     MenuCollection: {
       collection: {
-        resolve: async (
-          source: any,
-          args: any,
-          context: any,
-        ): Promise<number[]> => {
-          console.log('source', source);
-          console.log('args', args);
-          console.log('context', context);
+        resolve: async (): Promise<number[]> => {
+          // TODO remove dummy resolver to handle menu
           return [1, 2, 3];
         },
       },
