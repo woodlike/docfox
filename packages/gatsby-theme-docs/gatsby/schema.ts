@@ -18,6 +18,7 @@ export const createSchema = ({ actions }: CreateSchemaProps): void => {
       frontmatter: Frontmatter!
       docs: [Docs!]!
       slug: String!
+      foo: String!
     }
     type Docs {
       id: ID!

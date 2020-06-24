@@ -9,7 +9,7 @@ require('ts-node').register({
 const { createPages, createSchema, createCustomResolvers, sourceNodes, verifyDir } = require('./gatsby');
 
 exports.onPreBootstrap = args => verifyDir(args);
-exports.sourceNodes = args => sourceNodes(args);
+exports.sourceNodes = ({ actions }) => sourceNodes(actions);
 exports.createSchemaCustomization = args => createSchema(args);
 exports.createResolvers = ({ createResolvers, reporter }) => createCustomResolvers(createResolvers, reporter);
 exports.createPages = async args => await createPages(args);
