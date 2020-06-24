@@ -7,9 +7,6 @@ export interface SlugResolver {
     slug: {
       resolve: ({ frontmatter }: NodeDocument) => Promise<string>;
     };
-    foo: {
-      resolve: (source: any, args: any, context: any) => Promise<string>;
-    };
   };
 }
 
@@ -19,18 +16,6 @@ export function createSlugResolver(reporter: Reporter): SlugResolver {
       slug: {
         resolve: async ({ frontmatter }: NodeDocument): Promise<string> =>
           slugify(frontmatter, reporter),
-      },
-      foo: {
-        resolve: async (
-          source: any,
-          args: any,
-          context: any,
-        ): Promise<string> => {
-          console.log('source------', source);
-          console.log('args--------', args);
-          console.log('context------', context);
-          return 'fooooooooooooooooo';
-        },
       },
     },
   };
