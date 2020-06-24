@@ -37,7 +37,7 @@
     "@babel/preset-react": "7.10.1",
     "@babel/preset-typescript": "7.10.1",
     "@emotion/core": "10.0.28",
-    "@types/jest": "26.0.0",
+    "@types/jest": "26.0.3",
     "@types/mdx-js__react": "1.5.2",
     "@types/node": "13.13.12",
     "@types/react": "16.9.41",
