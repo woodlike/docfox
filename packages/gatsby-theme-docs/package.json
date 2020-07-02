@@ -22,7 +22,7 @@
     "@theme-ui/components": "^0.3.1",
     "@theme-ui/presets": "^0.3.0",
     "@types/theme-ui": "^0.3.2",
-    "@wdlk/components": "2.2.4",
+    "@wdlk/components": "2.4.0",
     "@wdlk/hooks": "^1.0.0",
     "gatsby-plugin-mdx": "^1.2.6",
     "gatsby-plugin-theme-ui": "^0.3.0",
