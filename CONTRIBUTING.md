@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for taking the time and thinking about contributing. We look forward to your ideas, feedback, and PRs!
+Thanks for taking the time and thinking about contributing to Docfox. We look forward to your ideas, feedback, and PRs!
 
 ## Prerequisites
 
