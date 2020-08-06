@@ -1,7 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  "plugins": [
-    "react-hooks"
+  'plugins': [
+    'react-hooks'
   ],
   extends: [
     'plugin:react/recommended',
@@ -16,8 +16,16 @@ module.exports = {
       jsx: true,
     },
   },
-  "rules": {
-    "react-hooks/rules-of-hooks": "error",
+  'rules': {
+    'no-unused-vars': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': [
+      'off', { allowArgumentsExplicitlyTypedAsAny: false, allowHigherOrderFunctions: false }
+    ],
+    '@typescript-eslint/explicit-function-return-type': [
+      'off',
+      { allowExpressions: true }
+    ],
   },
   settings: {
     react: {
