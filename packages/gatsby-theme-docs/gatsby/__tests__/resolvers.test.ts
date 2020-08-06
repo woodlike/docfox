@@ -21,8 +21,8 @@ describe('resolvers', () => {
       expect(createMenuResolver(gatsby.reporter as Reporter))
         .toMatchInlineSnapshot(`
         Object {
-          "Menu": Object {
-            "category": Object {
+          "MenuCollection": Object {
+            "menu": Object {
               "resolve": [Function],
             },
           },

@@ -1,4 +1,3 @@
-import { gatsby } from '../../__mocks__';
 import { slugify, hyphenize, Frontmatter } from '..';
 
 describe('utils', () => {
@@ -18,26 +17,6 @@ describe('utils', () => {
     });
   });
   describe('slugify()', () => {
-    const { reporter } = gatsby;
-
-    it('should have called reporter on missing frontmatter object', () => {
-      const slug = slugify({} as Frontmatter);
-      expect(reporter.panicOnBuild).toHaveBeenCalled();
-      expect(slug).toBe('');
-    });
-
-    it('should have called reporter on missing frontmatter menu', () => {
-      const slug = slugify({ name: 'Under Pressure' } as Frontmatter);
-      expect(reporter.panicOnBuild).toHaveBeenCalled();
-      expect(slug).toBe('');
-    });
-
-    it('should have called reporter on missing frontmatter menu', () => {
-      const slug = slugify({ menu: 'Hocs' } as Frontmatter);
-      expect(reporter.panicOnBuild).toHaveBeenCalled();
-      expect(slug).toBe('');
-    });
-
     it('should return a slugified string /javascript-parser/babel', () => {
       const frontmatter: Frontmatter = {
         name: 'babel',
