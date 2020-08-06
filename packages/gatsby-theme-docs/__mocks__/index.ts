@@ -1,3 +1,3 @@
-export * from './mdxAstMock';
-export * from './gatsby';
 export * from './data';
+export * from './gatsby';
+export * from './mdxAstMock';

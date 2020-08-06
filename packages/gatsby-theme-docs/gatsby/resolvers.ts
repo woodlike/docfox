@@ -1,15 +1,17 @@
-import { Reporter } from 'gatsby';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { NodeInput, Reporter } from 'gatsby';
 import { NodeDocument, slugify } from '.';
+import { menu, Menu, Record } from '../src/domain';
 
-export interface SlugResolver {
-  Doc: {
-    slug: {
-      resolve: ({ frontmatter }: NodeDocument) => Promise<string>;
-    };
-  };
+interface GatsbyContext {
+  readonly nodeModel: NodeModel;
 }
 
-export function createSlugResolver(reporter: Reporter): SlugResolver {
+interface NodeModel {
+  getAllNodes(init: { type: string }): Record[];
+}
+
+export function createSlugResolver(reporter: Reporter) {
   return {
     Doc: {
       slug: {
@@ -20,13 +22,19 @@ export function createSlugResolver(reporter: Reporter): SlugResolver {
   };
 }
 
-export function createMenuResolver(): {} {
+export function createMenuResolver() {
   return {
     MenuCollection: {
-      collection: {
-        resolve: async (): Promise<number[]> => {
-          // TODO remove dummy resolver to handle menu
-          return [1, 2, 3];
+      menu: {
+        resolve: async (
+          _src: NodeInput,
+          _args: unknown,
+          ctx: GatsbyContext,
+        ): Promise<Menu[]> => {
+          const records = ctx.nodeModel.getAllNodes({
+            type: 'Doc',
+          });
+          return menu.create(records);
         },
       },
     },

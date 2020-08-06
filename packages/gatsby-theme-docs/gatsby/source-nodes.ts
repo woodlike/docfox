@@ -29,14 +29,14 @@ async function sourceDocNode(
   }
 }
 
-function sourceMenuNode(actions: Actions): void {
+function sourceNavigationNode(actions: Actions): void {
   const { createNode } = actions;
   createNode({
-    id: uuidv3('menu', '1ee420e6-40c1-4f11-885f-9ed659ac95ae'),
+    id: uuidv3('navi', '1ee420e6-40c1-4f11-885f-9ed659ac95ae'),
     children: [],
     internal: {
       type: 'MenuCollection',
-      contentDigest: crypto.createHash('sha256').update('menu').digest('hex'),
+      contentDigest: crypto.createHash('sha256').update('navi').digest('hex'),
     },
   });
 }
@@ -44,5 +44,5 @@ function sourceMenuNode(actions: Actions): void {
 export async function sourceNodes(actions: Actions): Promise<void> {
   const docs = await document.create();
   await sourceDocNode(docs, actions);
-  sourceMenuNode(actions);
+  sourceNavigationNode(actions);
 }

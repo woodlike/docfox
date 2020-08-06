@@ -30,10 +30,10 @@ export const createSchema = ({ actions }: CreateSchemaProps): void => {
       title: String
     }
     type MenuCollection implements Node @dontInfer {
-      collection: [Int!]!
+      menu: [Menu!]!
     }
     type Menu {
-      name: String!
+      category: String!
       items: [MenuItem!]!
     }
     type MenuItem {
