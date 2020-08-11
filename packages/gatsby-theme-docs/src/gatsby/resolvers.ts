@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NodeInput, Reporter } from 'gatsby';
 import { NodeDocument, slugify } from '.';
-import { menu, Menu, Record } from '../src/domain';
+import { menu, Menu, Doc } from '../model';
 
 interface GatsbyContext {
   readonly nodeModel: NodeModel;
 }
 
 interface NodeModel {
-  getAllNodes(init: { type: string }): Record[];
+  getAllNodes(init: { type: string }): Doc[];
 }
 
 export function createSlugResolver(reporter: Reporter) {

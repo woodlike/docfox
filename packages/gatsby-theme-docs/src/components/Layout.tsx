@@ -5,7 +5,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql, Link } from 'gatsby';
 
 import { SectionLayout } from '.';
-import { Document, NodeDocument } from '../../gatsby';
+import { Document, NodeDocument } from '../gatsby';
 
 const shortcodes = { Link };
 

@@ -1,10 +1,10 @@
 import { menu } from '../';
-import { records } from '../../__mocks__';
+import { docs } from '../../__mocks__';
 
 describe('Menu domain model', () => {
   describe('menu.create()', () => {
     it('should create an instace of the Menu Domain Model', () => {
-      expect(menu.create(records)).toMatchInlineSnapshot(`
+      expect(menu.create(docs)).toMatchInlineSnapshot(`
         Array [
           Object {
             "category": "/",
