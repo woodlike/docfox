@@ -3,8 +3,22 @@ import { jsx, SxStyleProp } from 'theme-ui';
 import { Rows, Row, Theme } from '@wdlk/components';
 
 export interface TemplateLayoutProps {
-  code: JSX.Element;
+  readonly code: JSX.Element;
+  readonly navigation: JSX.Element;
 }
+
+const stylesContainer: SxStyleProp = {
+  position: 'relative',
+};
+
+const stylesMain: SxStyleProp = {
+  paddingTop: ({ navigationTab }) => [
+    `${navigationTab}px`,
+    `${navigationTab}px`,
+    0,
+  ],
+  paddingLeft: ({ navigationTab }) => [0, 0, `${navigationTab}px`],
+};
 
 const stylesContent: SxStyleProp = {
   minHeight: '100vh',
@@ -51,19 +65,24 @@ const createStylesContent = (isSingleContent: boolean): SxStyleProp => ({
 });
 
 export const TemplateLayout: React.FC<TemplateLayoutProps> = props => (
-  <Rows collapseBelow={2} as="article">
-    <Row
-      sx={createStylesContent(Boolean(props.children))}
-      basis={Boolean(props.children) ? '1/2' : 'fluid'}
-      as="section">
-      {props.children}
-    </Row>
-    {Boolean(props.code) && (
-      <Row sx={stylesCode} basis="1/2" as="aside">
-        {props.code}
-      </Row>
-    )}
-  </Rows>
+  <div sx={stylesContainer}>
+    {props.navigation}
+    <main sx={stylesMain}>
+      <Rows collapseBelow={2} as="article">
+        <Row
+          sx={createStylesContent(Boolean(props.children))}
+          basis={Boolean(props.children) ? '1/2' : 'fluid'}
+          as="section">
+          {props.children}
+        </Row>
+        {Boolean(props.code) && (
+          <Row sx={stylesCode} basis="1/2" as="aside">
+            {props.code}
+          </Row>
+        )}
+      </Rows>
+    </main>
+  </div>
 );
 
 TemplateLayout.displayName = 'TemplateLayout';
