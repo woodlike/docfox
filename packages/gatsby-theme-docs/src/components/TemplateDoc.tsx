@@ -4,7 +4,7 @@ import { Code, Language } from '@wdlk/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql, Link } from 'gatsby';
 
-import { SectionLayout } from '.';
+import { TemplateLayout } from '.';
 import { Document, NodeDocument } from '../gatsby';
 
 const shortcodes = { Link };
@@ -15,19 +15,21 @@ interface DocQuery {
   };
 }
 
-export default function DocPageTemplate({ data }: DocQuery): JSX.Element {
+export default function TemplateDoc({ data }: DocQuery): JSX.Element {
   // TODO: make code component language configurable
   const { doc } = data;
   return (
     <MDXProvider components={shortcodes}>
       {(doc.docs as Document[]).map((doc: Document) => (
-        <SectionLayout
+        <TemplateLayout
           key={doc.id}
-          content={<MDXRenderer>{doc.body}</MDXRenderer>}>
-          {Boolean(doc.display) && (
-            <Code code={doc.display || ''} lang={Language.tsx} size="m" />
-          )}
-        </SectionLayout>
+          code={
+            Boolean(doc.display) && (
+              <Code code={doc.display || ''} lang={Language.tsx} size="m" />
+            )
+          }>
+          <MDXRenderer>{doc.body}</MDXRenderer>
+        </TemplateLayout>
       ))}
     </MDXProvider>
   );

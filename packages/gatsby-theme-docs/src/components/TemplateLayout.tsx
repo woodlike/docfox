@@ -2,8 +2,8 @@
 import { jsx, SxStyleProp } from 'theme-ui';
 import { Rows, Row, Theme } from '@wdlk/components';
 
-export interface SectionLayoutProps {
-  content: JSX.Element;
+export interface TemplateLayoutProps {
+  code: JSX.Element;
 }
 
 const stylesContent: SxStyleProp = {
@@ -50,20 +50,20 @@ const createStylesContent = (isSingleContent: boolean): SxStyleProp => ({
   ...(isSingleContent ? stylesContentMultiple : stylesContentSingle),
 });
 
-export const SectionLayout: React.FC<SectionLayoutProps> = props => (
+export const TemplateLayout: React.FC<TemplateLayoutProps> = props => (
   <Rows collapseBelow={2} as="article">
     <Row
       sx={createStylesContent(Boolean(props.children))}
       basis={Boolean(props.children) ? '1/2' : 'fluid'}
       as="section">
-      {props.content}
+      {props.children}
     </Row>
-    {Boolean(props.children) && (
+    {Boolean(props.code) && (
       <Row sx={stylesCode} basis="1/2" as="aside">
-        {props.children}
+        {props.code}
       </Row>
     )}
   </Rows>
 );
 
-SectionLayout.displayName = 'SectionLayout';
+TemplateLayout.displayName = 'TemplateLayout';

@@ -16,7 +16,7 @@ interface DocQuery {
 export interface DocQueryData {
   readonly allDoc: {
     readonly nodes: Pick<NodeDocument, 'id' | 'slug'>[];
-  }
+  };
 }
 
 export const createPages = async ({
@@ -46,7 +46,7 @@ export const createPages = async ({
     const { id, slug } = doc;
     createPage({
       path: slug,
-      component: resolve('./src/components/Layout.tsx'),
+      component: resolve('./src/components/TemplateDoc.tsx'),
       context: {
         id: id,
       },
