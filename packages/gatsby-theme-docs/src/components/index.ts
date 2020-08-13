@@ -4,6 +4,6 @@ export * from './Burger';
 export * from './Logo';
 export * from './Navigation';
 export * from './SideBar';
-export * from './TemplateLayout';
+export * from './Layout';
 
 export const List = { ...IntList };

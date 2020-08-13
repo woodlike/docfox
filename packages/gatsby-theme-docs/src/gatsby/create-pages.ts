@@ -46,7 +46,7 @@ export const createPages = async ({
     const { id, slug } = doc;
     createPage({
       path: slug,
-      component: resolve('./src/components/TemplateDoc.tsx'),
+      component: resolve('./src/app/index.tsx'),
       context: {
         id: id,
       },

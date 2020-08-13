@@ -4,7 +4,7 @@ import { Code, Language } from '@wdlk/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql, Link } from 'gatsby';
 
-import { Burger, Navigation, TemplateLayout } from '.';
+import { Burger, Navigation, TemplateLayout } from '../components';
 import { Document, NodeDocument } from '../gatsby';
 
 const shortcodes = { Link };
