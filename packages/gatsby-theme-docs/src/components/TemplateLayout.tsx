@@ -1,10 +1,12 @@
 /**@jsx jsx */
 import { jsx, SxStyleProp } from 'theme-ui';
 import { Rows, Row, Theme } from '@wdlk/components';
+import { ThemeDoc } from '../gatsby-plugin-theme-ui';
 
 export interface TemplateLayoutProps {
   readonly code: JSX.Element;
   readonly navigation: JSX.Element;
+  readonly menuIcon: JSX.Element;
 }
 
 const stylesContainer: SxStyleProp = {
@@ -64,9 +66,19 @@ const createStylesContent = (isSingleContent: boolean): SxStyleProp => ({
   ...(isSingleContent ? stylesContentMultiple : stylesContentSingle),
 });
 
+const stylesMenuIconSlot: SxStyleProp = {
+  position: 'fixed',
+  top: ({ space }: ThemeDoc) => [`${space[4]}px`, `${space[4]}px`, '50%'],
+  right: ({ space }: ThemeDoc) => [`${space[4]}px`, `${space[4]}px`, 'unset'],
+  left: ({ space }: ThemeDoc) => ['unset', 'unset', `${space[3]}px`],
+  transform: ['none', 'none', 'translateY(-50%) rotate(90deg)'],
+  zIndex: 3,
+};
+
 export const TemplateLayout: React.FC<TemplateLayoutProps> = props => (
   <div sx={stylesContainer}>
     {props.navigation}
+    <span sx={stylesMenuIconSlot}>{props.menuIcon}</span>
     <main sx={stylesMain}>
       <Rows collapseBelow={2} as="article">
         <Row

@@ -33,7 +33,12 @@ const createResponsiveSpacing = (space: number[]) => [
 ];
 
 const stylesSpace: SxStyleProp = {
-  paddingTop: ({ space }: ThemeDoc) => createResponsiveSpacing(space),
+  paddingTop: ({ navigationTab, space }: ThemeDoc) => [
+    `${navigationTab}px`,
+    `${navigationTab}px`,
+    `${space[6]}px`,
+    `${space[8]}px`,
+  ],
   paddingRight: ({ space }: ThemeDoc) => createResponsiveSpacing(space),
   paddingBottom: ({ space }: ThemeDoc) => createResponsiveSpacing(space),
   paddingLeft: ({ navigationTab, space }: ThemeDoc) => [

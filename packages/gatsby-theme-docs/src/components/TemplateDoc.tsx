@@ -4,7 +4,7 @@ import { Code, Language } from '@wdlk/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql, Link } from 'gatsby';
 
-import { Navigation, TemplateLayout } from '.';
+import { Burger, Navigation, TemplateLayout } from '.';
 import { Document, NodeDocument } from '../gatsby';
 
 const shortcodes = { Link };
@@ -31,11 +31,14 @@ export default function TemplateDoc({ data }: DocQuery): JSX.Element {
               )}
             </>
           }
+          menuIcon={
+            <Burger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+          }
           navigation={
             <Navigation.Frame
-              onClick={() => setIsOpen(!isOpen)}
-              isOpen={isOpen}>
-              hi mom
+              isOpen={isOpen}
+              onClick={() => setIsOpen(!isOpen)}>
+              Hi mom!
             </Navigation.Frame>
           }>
           <MDXRenderer>{doc.body}</MDXRenderer>
