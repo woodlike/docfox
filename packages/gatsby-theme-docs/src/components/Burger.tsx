@@ -32,7 +32,7 @@ const stylesLine = css`
   height: 1px;
   background-color: black;
   transform-origin: center;
-  transition: transform 200ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 `;
 
 const StyledTopLine = styled.span<StyledBurgerProps>`
