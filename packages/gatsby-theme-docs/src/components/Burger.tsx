@@ -1,68 +1,73 @@
-/**@jsx jsx */
-import { jsx, SxStyleProp } from 'theme-ui';
-import { ThemeDoc } from '../gatsby-plugin-theme-ui';
+import React from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 export interface BurgerProps {
-  readonly isOpen: boolean;
-  readonly onClick: React.MouseEventHandler<SVGElement>;
+  readonly isActive: boolean;
+  readonly onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const WIDTH = 30;
-const HEIGHT = 15;
-const STROKE = 1;
+export interface StyledBurgerProps {
+  readonly isActive: boolean;
+}
 
-const stylesBurger: SxStyleProp = {
-  width: `${WIDTH}px`,
-  height: `${HEIGHT}px`,
-  color: ({ colors }: ThemeDoc) => colors.grays[2],
-  cursor: 'pointer',
-  fill: 'currentColor',
-  stroke: 'currentColor',
-  overflow: 'visible',
-  strokeWidth: STROKE,
-};
+const HEIGHT = 28;
+const WIDTH = 35;
 
-const stylesLines: SxStyleProp = {
-  transformOrigin: 'center center',
-  transition: 'transform 200ms linear',
-};
+const StyledBurger = styled.div`
+  position: relative;
+  width: ${WIDTH}px;
+  height: ${HEIGHT}px;
+  cursor: pointer;
+`;
 
-const createStylesBottomLine = (isOpen: boolean): SxStyleProp => ({
-  ...stylesLines,
-  transform: isOpen ? 'rotate(-39deg) translate3d(-5%, -30%, 0)' : 'none',
-});
+StyledBurger.displayName = 'StyledBurger';
 
-const createStyleMidLine = (isOpen: boolean): SxStyleProp => ({
-  opacity: isOpen ? 0 : 1,
-});
+const stylesLine = css`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  transform-origin: center;
+  transition: transform 200ms ease-in-out;
+`;
 
-const createStyleTopLine = (isOpen: boolean): SxStyleProp => ({
-  ...stylesLines,
-  transform: isOpen ? 'rotate(38deg) translate3d(5%,56%,0)' : 'none',
-});
+const StyledTopLine = styled.span<StyledBurgerProps>`
+  ${stylesLine}
+  transform: ${({ isActive }) =>
+    isActive
+      ? css`translate3d(0, -50%, 0) rotate(45deg)`
+      : css`translate3d(0, ${Math.round(
+          (HEIGHT / 3) * -1,
+        )}px, 0) rotate(0deg)`};
+`;
 
-export const Burger: React.FC<BurgerProps> = ({ isOpen, onClick }) => (
-  <svg
-    sx={stylesBurger}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    onClick={onClick}>
-    <line
-      sx={createStyleTopLine(isOpen)}
-      y1={`${STROKE}`}
-      x2={`${WIDTH}`}
-      y2={`${STROKE}`}></line>
-    <line
-      sx={createStyleMidLine(isOpen)}
-      y1={`${HEIGHT / 2}`}
-      x2={`${WIDTH}`}
-      y2={`${HEIGHT / 2}`}></line>
-    <line
-      sx={createStylesBottomLine(isOpen)}
-      y1={`${HEIGHT - STROKE}`}
-      x2={`${WIDTH}`}
-      y2={`${HEIGHT - STROKE}`}></line>
-  </svg>
+StyledTopLine.displayName = 'StyledTopLine';
+
+const StyledMidLine = styled.span<StyledBurgerProps>`
+  ${stylesLine}
+  opacity: ${({ isActive }) => (isActive ? 0 : 1)};
+`;
+
+StyledMidLine.displayName = 'StyledMidLine';
+
+const StyledBottomLine = styled.span<StyledBurgerProps>`
+  ${stylesLine}
+  transform: ${({ isActive }) =>
+    isActive
+      ? css`translate3d(0, -50%, 0) rotate(-45deg)`
+      : css`translate3d(0, ${Math.round(HEIGHT / 3)}px, 0) rotate(0deg)`};
+`;
+
+StyledBottomLine.displayName = 'StyledBottomLine';
+
+export const Burger: React.FC<BurgerProps> = props => (
+  <StyledBurger onClick={props.onClick}>
+    <StyledTopLine isActive={props.isActive} />
+    <StyledMidLine isActive={props.isActive} />
+    <StyledBottomLine isActive={props.isActive} />
+  </StyledBurger>
 );

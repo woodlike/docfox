@@ -32,7 +32,7 @@ export default function TemplateDoc({ data }: DocQuery): JSX.Element {
             </>
           }
           menuIcon={
-            <Burger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+            <Burger onClick={() => setIsOpen(!isOpen)} isActive={isOpen} />
           }
           navigation={
             <Navigation.Frame

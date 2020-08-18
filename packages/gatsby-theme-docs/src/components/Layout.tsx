@@ -71,7 +71,7 @@ const stylesMenuIconSlot: SxStyleProp = {
   top: ({ space }: ThemeDoc) => [`${space[4]}px`, `${space[4]}px`, '50%'],
   right: ({ space }: ThemeDoc) => [`${space[4]}px`, `${space[4]}px`, 'unset'],
   left: ({ space }: ThemeDoc) => ['unset', 'unset', `${space[3]}px`],
-  transform: ['none', 'none', 'translateY(-50%) rotate(90deg)'],
+  transform: ['none', 'none', 'translateY(-50%)'],
   zIndex: 3,
 };
 
