@@ -1,5 +1,4 @@
-import { Record } from '.';
-import { slugify } from '.';
+import { slugify, Doc } from '.';
 
 export interface Menu {
   readonly category: string;
@@ -12,12 +11,12 @@ export interface MenuItem {
 }
 
 export interface MenuFactory {
-  create(records: Record[]): Menu[];
+  create(docs: Doc[]): Menu[];
 }
 
-function create(records: Record[]) {
-  return records.reduce<Menu[]>((acc, record) => {
-    const { frontmatter } = record;
+function create(docs: Doc[]) {
+  return docs.reduce<Menu[]>((acc, doc) => {
+    const { frontmatter } = doc;
     const category = frontmatter.menu.toLowerCase();
     const categoryIdx = acc.findIndex(menu => menu.category === category);
 

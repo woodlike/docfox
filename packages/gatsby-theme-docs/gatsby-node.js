@@ -6,10 +6,17 @@ require('ts-node').register({
   },
 });
 
-const { createPages, createSchema, createCustomResolvers, sourceNodes, verifyDir } = require('./gatsby');
+const {
+  createPages,
+  createSchema,
+  createCustomResolvers,
+  sourceNodes,
+  verifyDir,
+} = require('./src/gatsby');
 
 exports.onPreBootstrap = args => verifyDir(args);
 exports.sourceNodes = ({ actions }) => sourceNodes(actions);
 exports.createSchemaCustomization = args => createSchema(args);
-exports.createResolvers = ({ createResolvers, reporter }) => createCustomResolvers(createResolvers, reporter);
+exports.createResolvers = ({ createResolvers, reporter }) =>
+  createCustomResolvers(createResolvers, reporter);
 exports.createPages = async args => await createPages(args);

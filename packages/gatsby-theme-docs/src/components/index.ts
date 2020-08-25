@@ -1,8 +1,9 @@
 import * as IntList from './List';
 
+export * from './Burger';
+export * from './Layout';
 export * from './Logo';
-export * from './Main';
-export * from './SectionLayout';
+export * from './Navigation';
 export * from './SideBar';
 
 export const List = { ...IntList };

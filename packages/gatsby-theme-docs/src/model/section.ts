@@ -1,4 +1,4 @@
-export interface Doc {
+export interface Section {
   readonly body: string;
   readonly display: string;
   readonly id: string;

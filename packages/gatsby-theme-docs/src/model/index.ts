@@ -1,4 +1,4 @@
 export * from './doc';
 export * from './menu';
-export * from './record';
+export * from './section';
 export * from './utils';

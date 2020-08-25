@@ -17,6 +17,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
     "@theme-ui/components": "^0.3.1",
@@ -24,6 +26,7 @@
     "@types/theme-ui": "^0.3.2",
     "@wdlk/components": "2.2.4",
     "@wdlk/hooks": "^1.0.0",
+    "emotion-theming": "^10.0.27",
     "gatsby-plugin-mdx": "^1.2.6",
     "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-source-filesystem": "^2.3.1",

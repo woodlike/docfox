@@ -47,5 +47,8 @@ export function extractFrontmatter(data: string): string {
   return data.replace(/(^---\s*\n([a-z]*:\s*.*\n){1,5}---)/gim, '');
 }
 
-export const findNodeByType = (mdxAst: MDXAst, type: string): MDXAstNode | {} =>
+export const findNodeByType = (
+  mdxAst: MDXAst,
+  type: string,
+): MDXAstNode | Record<string, unknown> =>
   mdxAst.children.find(node => node.type === type && node.value) || {};
