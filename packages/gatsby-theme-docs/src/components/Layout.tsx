@@ -11,12 +11,12 @@ export interface TemplateLayoutProps {
   readonly menuIcon: JSX.Element;
 }
 
-interface StyledContentRowProps {
+interface StyledSlotProps {
   readonly isSingleRow: boolean;
   readonly theme: ThemeDoc;
 }
 
-const createStylesContentRow = (props: StyledContentRowProps) =>
+const createStylesContentRow = (props: StyledSlotProps) =>
   props.isSingleRow
     ? css`
         max-width: ${props.theme.breakpoints[2]};
@@ -37,15 +37,16 @@ StyledContainer.displayName = 'StyledContainer';
 const StyledMainContent = styled.main`
   padding-top: ${({ theme }) => theme.navigationTab}px;
   ${({ theme }) =>
-    `
+    css`
       @media (min-width: ${theme.breakpoints[1]}) {
         padding-top: 0;
+        padding-left: ${theme.navigationTab}px;
       }
     `}
 `;
 StyledMainContent.displayName = 'StyledMainContent';
 
-const StyledContentRow = styled(Row)<StyledContentRowProps>`
+const StyledContentRow = styled(Row)<StyledSlotProps>`
   min-height: 100vh;
   padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
   ${props => {
