@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from 'emotion-theming';
 import { MDXProvider } from '@mdx-js/react';
 import { Code, Language } from '@wdlk/components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -6,6 +7,7 @@ import { graphql, Link } from 'gatsby';
 
 import { Burger, Navigation, TemplateLayout } from '../components';
 import { Document, NodeDocument } from '../gatsby';
+import theme from '../gatsby-plugin-theme-ui';
 
 const shortcodes = { Link };
 
@@ -20,31 +22,31 @@ export default function TemplateDoc({ data }: DocQuery): JSX.Element {
   // TODO: make code component language configurable
   const { doc } = data;
   return (
-    <MDXProvider components={shortcodes}>
-      {(doc.docs as Document[]).map((doc: Document) => (
-        <TemplateLayout
-          key={doc.id}
-          code={
-            <>
-              {Boolean(doc.display) && (
+    <ThemeProvider theme={theme}>
+      <MDXProvider components={shortcodes}>
+        {(doc.docs as Document[]).map((doc: Document) => (
+          <TemplateLayout
+            key={doc.id}
+            code={
+              Boolean(doc.display) ? (
                 <Code code={doc.display || ''} lang={Language.tsx} size="m" />
-              )}
-            </>
-          }
-          menuIcon={
-            <Burger onClick={() => setIsOpen(!isOpen)} isActive={isOpen} />
-          }
-          navigation={
-            <Navigation.Frame
-              isOpen={isOpen}
-              onClick={() => setIsOpen(!isOpen)}>
-              Hi mom!
-            </Navigation.Frame>
-          }>
-          <MDXRenderer>{doc.body}</MDXRenderer>
-        </TemplateLayout>
-      ))}
-    </MDXProvider>
+              ) : null
+            }
+            menuIcon={
+              <Burger onClick={() => setIsOpen(!isOpen)} isActive={isOpen} />
+            }
+            navigation={
+              <Navigation.Frame
+                isOpen={isOpen}
+                onClick={() => setIsOpen(!isOpen)}>
+                Hi mom!
+              </Navigation.Frame>
+            }>
+            <MDXRenderer>{doc.body}</MDXRenderer>
+          </TemplateLayout>
+        ))}
+      </MDXProvider>
+    </ThemeProvider>
   );
 }
 

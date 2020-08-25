@@ -1,100 +1,132 @@
-/**@jsx jsx */
-import { jsx, SxStyleProp } from 'theme-ui';
-import { Rows, Row, Theme } from '@wdlk/components';
+import React from 'react';
+import { css } from '@emotion/core';
+import { Rows, Row } from '@wdlk/components';
+
+import styled from './styled';
 import { ThemeDoc } from '../gatsby-plugin-theme-ui';
 
 export interface TemplateLayoutProps {
-  readonly code: JSX.Element;
+  readonly code: JSX.Element | null;
   readonly navigation: JSX.Element;
   readonly menuIcon: JSX.Element;
 }
 
-const stylesContainer: SxStyleProp = {
-  position: 'relative',
-};
+interface StyledContentRowProps {
+  readonly isSingleRow: boolean;
+  readonly theme: ThemeDoc;
+}
 
-const stylesMain: SxStyleProp = {
-  paddingTop: ({ navigationTab }) => [
-    `${navigationTab}px`,
-    `${navigationTab}px`,
-    0,
-  ],
-  paddingLeft: ({ navigationTab }) => [0, 0, `${navigationTab}px`],
-};
+const createStylesContentRow = (props: StyledContentRowProps) =>
+  props.isSingleRow
+    ? css`
+        max-width: ${props.theme.breakpoints[2]};
+      `
+    : css`
+        max-width: 50%;
+        border-color: ${props.theme.colors.grays[0]};
+        border-style: solid;
+        border-width: 0 0 ${props.theme.borderWidths[0]}px;
+      `;
 
-const stylesContent: SxStyleProp = {
-  minHeight: '100vh',
-  padding: (theme: Theme) => `${theme.space[8]}px ${theme.space[4]}px`,
-};
+const StyledContainer = styled.div`
+  position: relative;
+`;
 
-const stylesContentSingle: SxStyleProp = {
-  [`@media screen and (min-width: 990px)`]: {
-    maxWidth: '768px',
-    padding: (theme: Theme) => `${theme.space[6]}px ${theme.space[8]}px`,
-  },
-};
+StyledContainer.displayName = 'StyledContainer';
 
-const stylesContentMultiple: SxStyleProp = {
-  [`@media screen and (min-width: 990px)`]: {
-    maxWidth: '50%',
-    padding: (theme: Theme) => `${theme.space[6]}px ${theme.space[8]}px`,
-    borderColor: (theme: Theme) => theme.colors.grays[0],
-    borderStyle: (theme: Theme) => theme.borderStyles[4],
-    borderWidth: (theme: Theme) => `0 0 ${theme.borderWidths[0]}px`,
-  },
-};
+const StyledMainContent = styled.main`
+  padding-top: ${({ theme }) => theme.navigationTab}px;
+  ${({ theme }) =>
+    `
+      @media (min-width: ${theme.breakpoints[1]}) {
+        padding-top: 0;
+      }
+    `}
+`;
+StyledMainContent.displayName = 'StyledMainContent';
 
-const stylesCode: SxStyleProp = {
-  display: 'flex',
-  alignItems: 'center',
-  padding: (theme: Theme) => `${theme.space[8]}px ${theme.space[4]}px`,
-  borderColor: (theme: Theme) => theme.colors.whites[1],
-  borderStyle: (theme: Theme) => theme.borderStyles[4],
-  borderWidth: (theme: Theme) => `0 0 ${theme.borderWidths[0]}px`,
-  backgroundColor: 'background',
+const StyledContentRow = styled(Row)<StyledContentRowProps>`
+  min-height: 100vh;
+  padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
+  ${props => {
+    const { breakpoints, space } = props.theme;
 
-  [`@media screen and (min-width: 990px)`]: {
-    maxWidth: '50%',
-    padding: (theme: Theme) => `${theme.space[6]}px ${theme.space[4]}px`,
-    backgroundColor: 'codeBg',
-    borderColor: (theme: Theme) => theme.colors.grays[4],
-  },
-};
+    return css`
+      @media (min-width: ${breakpoints[2]}) {
+        padding: ${space[6]}px ${space[8]}px;
+        ${createStylesContentRow(props)}
+      }
+    `;
+  }}
+`;
 
-const createStylesContent = (isSingleContent: boolean): SxStyleProp => ({
-  ...stylesContent,
-  ...(isSingleContent ? stylesContentMultiple : stylesContentSingle),
-});
+StyledContentRow.displayName = 'StyledContentRow';
 
-const stylesMenuIconSlot: SxStyleProp = {
-  position: 'fixed',
-  top: ({ space }: ThemeDoc) => [`${space[4]}px`, `${space[4]}px`, '50%'],
-  right: ({ space }: ThemeDoc) => [`${space[4]}px`, `${space[4]}px`, 'unset'],
-  left: ({ space }: ThemeDoc) => ['unset', 'unset', `${space[3]}px`],
-  transform: ['none', 'none', 'translateY(-50%)'],
-  zIndex: 3,
-};
+const StyledCodeRow = styled(Row)`
+  display: flex;
+  align-items: center;
+  padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
+  border-color: ${({ theme }) => theme.colors.whites[1]};
+  border-style: solid;
+  border-width: ${({ theme }) => `0 0 ${theme.borderWidths[0]}px`};
+  background-color: ${({ theme }) => theme.colors.background};
+
+  ${props => {
+    const { breakpoints, colors, space } = props.theme;
+
+    return css`
+      @media (min-width: ${breakpoints[2]}) {
+        padding: ${space[6]}px ${space[4]}px;
+        background-color: ${colors.codeBg};
+        border-color: ${colors.grays[4]};
+      }
+    `;
+  }}
+`;
+
+StyledCodeRow.displayName = 'StyledCodeRow';
+
+const StyledMenuIconSlot = styled.div`
+  position: fixed;
+  top: ${({ theme }) => `${theme.space[4]}px`};
+  right: ${({ theme }) => `${theme.space[4]}px`};
+  z-index: 3;
+
+  ${props => {
+    const { breakpoints, colors, space } = props.theme;
+
+    return css`
+      @media (min-width: ${breakpoints[2]}) {
+        top: 50%;
+        right: unset;
+        left: ${space[3]}px;
+        border-color: ${colors.grays[4]};
+        transform: rotate(90deg);
+      }
+    `;
+  }}
+`;
+
+StyledMenuIconSlot.displayName = 'StyledMenuIconSlot';
 
 export const TemplateLayout: React.FC<TemplateLayoutProps> = props => (
-  <div sx={stylesContainer}>
+  <StyledContainer>
     {props.navigation}
-    <span sx={stylesMenuIconSlot}>{props.menuIcon}</span>
-    <main sx={stylesMain}>
+    <StyledMenuIconSlot>{props.menuIcon}</StyledMenuIconSlot>
+    <StyledMainContent>
       <Rows collapseBelow={2} as="article">
-        <Row
-          sx={createStylesContent(Boolean(props.children))}
+        <StyledContentRow
           basis={Boolean(props.children) ? '1/2' : 'fluid'}
+          isSingleRow={Boolean(props.children)}
           as="section">
           {props.children}
-        </Row>
+        </StyledContentRow>
         {Boolean(props.code) && (
-          <Row sx={stylesCode} basis="1/2" as="aside">
+          <StyledCodeRow basis="1/2" as="aside">
             {props.code}
-          </Row>
+          </StyledCodeRow>
         )}
       </Rows>
-    </main>
-  </div>
+    </StyledMainContent>
+  </StyledContainer>
 );
-
-TemplateLayout.displayName = 'TemplateLayout';
