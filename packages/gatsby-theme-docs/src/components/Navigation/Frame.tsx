@@ -1,5 +1,7 @@
-/**@jsx jsx */
-import { jsx, SxStyleProp } from 'theme-ui';
+import React from 'react';
+import { css } from '@emotion/core';
+
+import styled from '../styled';
 import { ThemeDoc } from '../../gatsby-plugin-theme-ui';
 
 export interface NavigationFrameProps {
@@ -7,72 +9,76 @@ export interface NavigationFrameProps {
   readonly onClick: React.MouseEventHandler<HTMLElement>;
 }
 
-const stylesTransform: SxStyleProp = {
-  transform: ({ navigationTab }: ThemeDoc) => [
-    `translate3d(0, calc(-100% + ${navigationTab}px),0)`,
-    `translate3d(0, calc(-100% + ${navigationTab}px),0)`,
-    `translate3d(calc(-100% + ${navigationTab}px),0,0)`,
-  ],
-  transition: 'transform 300ms ease-in-out',
-  cursor: 'pointer',
-  ':hover': {
-    transform: ({ navigationTab, space }: ThemeDoc) => [
-      `translate3d(0, calc(-100% + ${navigationTab + space[2]}px),0)`,
-      `translate3d(0, calc(-100% + ${navigationTab + space[2]}px),0)`,
-      `translate3d(calc(-100% + ${navigationTab + space[2]}px),0,0)`,
-    ],
-    transitionDuration: '100ms',
-  },
-};
+interface StyledNavFrameProps {
+  readonly isOpen: boolean;
+  readonly theme: ThemeDoc;
+}
 
-const createResponsiveSpacing = (space: number[]) => [
-  `${space[4]}px`,
-  `${space[4]}px`,
-  `${space[6]}px`,
-  `${space[8]}px`,
-];
+const createStylesTransform = (props: StyledNavFrameProps) => css`
+  transform: ${props.isOpen
+    ? `translate3d(0, 0, 0)`
+    : `translate3d(0, calc(-100% + ${props.theme.navigationTab}px), 0)`};
+  transition: transform 300ms ease-in-out;
 
-const stylesSpace: SxStyleProp = {
-  paddingTop: ({ navigationTab, space }: ThemeDoc) => [
-    `${navigationTab}px`,
-    `${navigationTab}px`,
-    `${space[6]}px`,
-    `${space[8]}px`,
-  ],
-  paddingRight: ({ space }: ThemeDoc) => createResponsiveSpacing(space),
-  paddingBottom: ({ space }: ThemeDoc) => createResponsiveSpacing(space),
-  paddingLeft: ({ navigationTab, space }: ThemeDoc) => [
-    `${space[4]}px`,
-    `${space[4]}px`,
-    `${space[6] + navigationTab}px`,
-    `${space[8] + navigationTab}px`,
-  ],
-};
+  :hover {
+    transform: translate3d(
+      0,
+      calc(-100% + ${props.theme.navigationTab + props.theme.space[2]}px),
+      0
+    );
+    transition-duration: 100ms;
+  }
 
-const stylesNavigation: SxStyleProp = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 2,
-  width: ['100vw', '100vw', '80vw'],
-  height: '100vh',
-  backgroundColor: ({ colors }: ThemeDoc) => colors.whites[4],
-  ...stylesSpace,
-  ...stylesTransform,
-};
+  @media (min-width: ${props.theme.breakpoints[2]}) {
+    transform: ${props.isOpen
+      ? `translate3d(0, 0, 0)`
+      : `translate3d(calc(-100% + ${props.theme.navigationTab}px),0,0)`};
 
-const createStylesFrame = (isOpen: boolean) => ({
-  ...stylesNavigation,
-  ...(isOpen && {
-    transform: 'translate3d(0, 0, 0)',
-    ':hover': { transform: 'translate3d(0, 0, 0)' },
-  }),
-});
+    :hover {
+      transform: ${props.isOpen
+        ? `translate3d(0, 0, 0)`
+        : `translate3d(
+            calc(-100% + ${props.theme.navigationTab + props.theme.space[2]}px),
+            0,
+            0)`};
+    }
+  }
+`;
+
+const StyledNavFrame = styled.nav<StyledNavFrameProps>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  padding: ${({ theme }) =>
+    `${theme.navigationTab}px ${theme.space[4]}px ${theme.space[4]}px`};
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.whites[4]};
+
+  ${({ theme }) => css`
+    @media (min-width: ${theme.breakpoints[2]}) {
+      width: 80vw;
+      padding: ${theme.space[6]}px ${theme.space[6]}px
+        ${theme.space[6] + theme.navigationTab}px;
+    }
+
+    @media (min-width: ${theme.breakpoints[3]}) {
+      padding: ${theme.space[8]}px ${theme.space[8]}px
+        ${theme.space[8] + theme.navigationTab}px;
+    }
+  `};
+
+  ${props => createStylesTransform(props)};
+`;
+
+StyledNavFrame.displayName = 'StyledNavFrame';
 
 export const Frame: React.FC<NavigationFrameProps> = props => (
-  <nav onClick={props.onClick} sx={createStylesFrame(props.isOpen)}>
+  <StyledNavFrame isOpen={props.isOpen} onClick={props.onClick}>
     {props.children}
-  </nav>
+  </StyledNavFrame>
 );
 
 Frame.displayName = 'Navigation.Frame';
