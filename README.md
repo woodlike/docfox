@@ -1,37 +1,22 @@
-# Docs
+# Docfox 🦊
 
-[![Actions Status](https://github.com/woodlike/docs/workflows/CI/badge.svg)](https://github.com/woodlike/docs/actions)
+[![Actions Status](https://github.com/woodlike/docfox/workflows/CI/badge.svg)](https://github.com/woodlike/docfox/actions)
 
-> Turn your Gatsby project into visual and interactive technical documentation.
+## Description
 
-## Motivation
+Docs is a Gatsby theme that programmatically generates visually polished and interactive technical documentation using MDX and Babel.
 
-### Development Requirements
+## 🗺 Roadmap
 
-🚀 Node.js >=10
-🌲 Git
-🐈 yarn >= 1.12
+[Top features](https://github.com/woodlike/docfox/projects/1)
+[Top Bugs](https://github.com/woodlike/docfox/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc+)
+[Newest Bugs](https://github.com/woodlike/docfox/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
-### Getting started with development
+## 🙏Support
 
-```sh
-git clone git@github.com:woodlike/docs.git
-cd docs
-# Install packages
-yarn
-```
+[Gitter](https://gitter.im/woodlike-docfox/community#)
+[Discord](https://discord.gg/u2rucA)
 
-### Commands
+## 📝 License
 
-The list of most important commands to work with the selected workspace.
-
-| Commands           | Package               | Description                                            |
-| ------------------ | --------------------- | ------------------------------------------------------ |
-| `yarn build:theme` | **gatsby-theme-docs** | compile Typescript into JavaScript                     |
-| `yarn build:docs`  | **docs**              | compile Typescript into JavaScript                     |
-| `yarn dev:theme`   | **gatsby-theme-docs** | compile Typescript into JavaScript in watch mode       |
-| `yarn dev:docs`    | **docs**              | compile Typescript into JavaScript in watch mode       |
-| `yarn lint:theme`  | **gatsby-theme-docs** | Lint the package according to the Eslint configuration |
-| `yarn lint:docs`   | **docs**              | Lint the package according to the Eslint configuration |
-| `yarn test:theme`  | **gatsby-theme-docs** | Run unit tests written with Jest                       |
-| `yarn type-check`  | **gatsby-theme-docs** | Run unit tests written with Jest                       |
+Licensed under the [MIT](https://github.com/woodlike/docfox/blob/master/LICENSE) License.
