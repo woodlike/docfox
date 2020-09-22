@@ -1,4 +1,4 @@
 import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeDoc } from '../gatsby-plugin-theme-ui';
+import { ThemeDoc } from './theme';
 
 export default styled as CreateStyled<ThemeDoc>;
