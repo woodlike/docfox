@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { Rows, Row } from '@wdlk/components';
+import { Columns, Column } from '@wdlk/components';
 
 import styled from './styled';
 import { ThemeDoc } from '../gatsby-plugin-theme-ui';
@@ -12,12 +12,12 @@ export interface TemplateLayoutProps {
 }
 
 interface StyledSlotProps {
-  readonly isSingleRow: boolean;
+  readonly isSingleColumn: boolean;
   readonly theme: ThemeDoc;
 }
 
-const createStylesContentRow = (props: StyledSlotProps) =>
-  props.isSingleRow
+const createStylesContentColumn = (props: StyledSlotProps) =>
+  props.isSingleColumn
     ? css`
         max-width: ${props.theme.breakpoints[2]};
       `
@@ -46,7 +46,7 @@ const StyledMainContent = styled.main`
 `;
 StyledMainContent.displayName = 'StyledMainContent';
 
-const StyledContentRow = styled(Row)<StyledSlotProps>`
+const StyledContentColumn = styled(Column)<StyledSlotProps>`
   min-height: 100vh;
   padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
   ${props => {
@@ -55,15 +55,15 @@ const StyledContentRow = styled(Row)<StyledSlotProps>`
     return css`
       @media (min-width: ${breakpoints[2]}) {
         padding: ${space[6]}px ${space[8]}px;
-        ${createStylesContentRow(props)}
+        ${createStylesContentColumn(props)}
       }
     `;
   }}
 `;
 
-StyledContentRow.displayName = 'StyledContentRow';
+StyledContentColumn.displayName = 'StyledContentColumn';
 
-const StyledCodeRow = styled(Row)`
+const StyledCodeColumn = styled(Column)`
   display: flex;
   align-items: center;
   padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
@@ -85,7 +85,7 @@ const StyledCodeRow = styled(Row)`
   }}
 `;
 
-StyledCodeRow.displayName = 'StyledCodeRow';
+StyledCodeColumn.displayName = 'StyledCodeColumn';
 
 const StyledMenuIconSlot = styled.div`
   position: fixed;
@@ -115,19 +115,19 @@ export const TemplateLayout: React.FC<TemplateLayoutProps> = props => (
     {props.navigation}
     <StyledMenuIconSlot>{props.menuIcon}</StyledMenuIconSlot>
     <StyledMainContent>
-      <Rows collapseBelow={2} as="article">
-        <StyledContentRow
+      <Columns collapseBelow={2} as="article">
+        <StyledContentColumn
           basis={Boolean(props.children) ? '1/2' : 'fluid'}
-          isSingleRow={Boolean(props.children)}
+          isSingleColumn={Boolean(props.children)}
           as="section">
           {props.children}
-        </StyledContentRow>
+        </StyledContentColumn>
         {Boolean(props.code) && (
-          <StyledCodeRow basis="1/2" as="aside">
+          <StyledCodeColumn basis="1/2" as="aside">
             {props.code}
-          </StyledCodeRow>
+          </StyledCodeColumn>
         )}
-      </Rows>
+      </Columns>
     </StyledMainContent>
   </StyledContainer>
 );
