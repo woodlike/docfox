@@ -1,14 +1,14 @@
-/** @jsx jsx */
-import { jsx, SxStyleProp } from 'theme-ui';
+import React from 'react';
+import styled from './styled';
 
-const stylesList: SxStyleProp = {
-  paddingLeft: 0,
-  margin: 0,
-  listStyle: 'none',
-};
+const StyledList = styled.ul`
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+`;
 
-export const Unordered: React.FC = props => <ul sx={stylesList}>{props.children}</ul>;
+export const Unordered: React.FC = props => (
+  <StyledList>{props.children}</StyledList>
+);
+
 export const Item: React.FC = props => <li>{props.children}</li>;
-
-Unordered.displayName = 'List.Unordered';
-Item.displayName = 'List.Item';

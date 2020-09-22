@@ -10,6 +10,10 @@ export interface ThemeDoc {
   readonly fonts: ThemeFonts;
   readonly navigationTab: number;
   readonly space: number[];
+  readonly logo: {
+    readonly width: number;
+    readonly height: number;
+  };
 }
 
 export interface ThemeFonts {
@@ -24,10 +28,6 @@ const breakpoints = ['480px', '769px', '1024px', '1440px'];
 const navigationTab = 60;
 
 const theme: ThemeDoc = {
-  colors: {
-    ...wdlkTheme.colors,
-  },
-
   ...wdlkTheme,
   breakpoints,
   borderWidths: [1, 2, 3, 4],
@@ -37,6 +37,10 @@ const theme: ThemeDoc = {
     monospace: `"IBM Plex Mono", monospace`,
   },
   navigationTab,
+  logo: {
+    width: 92,
+    height: 46,
+  },
   plain: {
     backgroundColor: 'white',
   },
