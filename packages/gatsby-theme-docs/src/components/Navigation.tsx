@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import styled from '../styled';
-import { ThemeDoc } from '../../gatsby-plugin-theme-ui';
+import { ThemeDoc } from '.';
+import styled from './styled';
 
 export interface NavigationFrameProps {
   readonly isOpen: boolean;
@@ -11,10 +11,11 @@ export interface NavigationFrameProps {
 
 interface StyledNavFrameProps {
   readonly isOpen: boolean;
-  readonly theme: ThemeDoc;
 }
 
-const createStylesTransform = (props: StyledNavFrameProps) => css`
+const createStylesTransform = (
+  props: StyledNavFrameProps & { readonly theme: ThemeDoc },
+) => css`
   transform: ${props.isOpen
     ? `translate3d(0, 0, 0)`
     : `translate3d(0, calc(-100% + ${props.theme.navigationTab}px), 0)`};
@@ -52,21 +53,21 @@ const StyledNavFrame = styled.nav<StyledNavFrameProps>`
   z-index: 2;
   width: 100vw;
   height: 100vh;
-  padding: ${({ theme }) =>
-    `${theme.navigationTab}px ${theme.space[4]}px ${theme.space[4]}px`};
+  padding: ${props =>
+    `${props.theme.navigationTab}px ${props.theme.space[4]}px ${props.theme.space[4]}px`};
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.whites[4]};
+  background-color: ${props => props.theme.colors.whites[4]};
 
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints[2]}) {
+  ${props => css`
+    @media (min-width: ${props.theme.breakpoints[2]}) {
       width: 80vw;
-      padding: ${theme.space[6]}px ${theme.space[6]}px
-        ${theme.space[6] + theme.navigationTab}px;
+      padding: ${props.theme.space[6]}px ${props.theme.space[6]}px
+        ${props.theme.space[6] + props.theme.navigationTab}px;
     }
 
-    @media (min-width: ${theme.breakpoints[3]}) {
-      padding: ${theme.space[8]}px ${theme.space[8]}px
-        ${theme.space[8] + theme.navigationTab}px;
+    @media (min-width: ${props.theme.breakpoints[3]}) {
+      padding: ${props.theme.space[8]}px ${props.theme.space[8]}px
+        ${props.theme.space[8] + props.theme.navigationTab}px;
     }
   `};
 
@@ -75,10 +76,8 @@ const StyledNavFrame = styled.nav<StyledNavFrameProps>`
 
 StyledNavFrame.displayName = 'StyledNavFrame';
 
-export const Frame: React.FC<NavigationFrameProps> = props => (
+export const Navigation: React.FC<NavigationFrameProps> = props => (
   <StyledNavFrame isOpen={props.isOpen} onClick={props.onClick}>
     {props.children}
   </StyledNavFrame>
 );
-
-Frame.displayName = 'Navigation.Frame';

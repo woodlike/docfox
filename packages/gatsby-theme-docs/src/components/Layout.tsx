@@ -2,8 +2,8 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { Columns, Column } from '@wdlk/components';
 
+import { ThemeDoc } from '.';
 import styled from './styled';
-import { ThemeDoc } from '../gatsby-plugin-theme-ui';
 
 export interface TemplateLayoutProps {
   readonly code: JSX.Element | null;
@@ -13,10 +13,11 @@ export interface TemplateLayoutProps {
 
 interface StyledSlotProps {
   readonly isSingleColumn: boolean;
-  readonly theme: ThemeDoc;
 }
 
-const createStylesContentColumn = (props: StyledSlotProps) =>
+const createStylesContentColumn = (
+  props: StyledSlotProps & { readonly theme: ThemeDoc },
+) =>
   props.isSingleColumn
     ? css`
         max-width: ${props.theme.breakpoints[2]};
@@ -35,12 +36,12 @@ const StyledContainer = styled.div`
 StyledContainer.displayName = 'StyledContainer';
 
 const StyledMainContent = styled.main`
-  padding-top: ${({ theme }) => theme.navigationTab}px;
-  ${({ theme }) =>
+  padding-top: ${props => props.theme.navigationTab}px;
+  ${props =>
     css`
-      @media (min-width: ${theme.breakpoints[1]}) {
+      @media (min-width: ${props.theme.breakpoints[1]}) {
         padding-top: 0;
-        padding-left: ${theme.navigationTab}px;
+        padding-left: ${props.theme.navigationTab}px;
       }
     `}
 `;
@@ -48,7 +49,7 @@ StyledMainContent.displayName = 'StyledMainContent';
 
 const StyledContentColumn = styled(Column)<StyledSlotProps>`
   min-height: 100vh;
-  padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
+  padding: ${props => `${props.theme.space[8]}px ${props.theme.space[4]}px`};
   ${props => {
     const { breakpoints, space } = props.theme;
 
@@ -66,11 +67,11 @@ StyledContentColumn.displayName = 'StyledContentColumn';
 const StyledCodeColumn = styled(Column)`
   display: flex;
   align-items: center;
-  padding: ${({ theme }) => `${theme.space[8]}px ${theme.space[4]}px`};
-  border-color: ${({ theme }) => theme.colors.whites[1]};
+  padding: ${props => `${props.theme.space[8]}px ${props.theme.space[4]}px`};
+  border-color: ${props => props.theme.colors.whites[1]};
   border-style: solid;
-  border-width: ${({ theme }) => `0 0 ${theme.borderWidths[0]}px`};
-  background-color: ${({ theme }) => theme.colors.background};
+  border-width: ${props => `0 0 ${props.theme.borderWidths[0]}px`};
+  background-color: ${props => props.theme.colors.background};
 
   ${props => {
     const { breakpoints, colors, space } = props.theme;
@@ -89,8 +90,8 @@ StyledCodeColumn.displayName = 'StyledCodeColumn';
 
 const StyledMenuIconSlot = styled.div`
   position: fixed;
-  top: ${({ theme }) => `${theme.space[4]}px`};
-  right: ${({ theme }) => `${theme.space[4]}px`};
+  top: ${props => `${props.theme.space[4]}px`};
+  right: ${props => `${props.theme.space[4]}px`};
   z-index: 3;
 
   ${props => {
