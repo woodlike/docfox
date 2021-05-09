@@ -3413,16 +3413,12 @@
   dependencies:
     wonka "^4.0.14"
 
-"@wdlk/components@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@wdlk/components/-/components-3.1.0.tgz#dd2948a83f9633a39d8aacba120e996a746a7f13"
-  integrity sha512-tn053+rCrx31ThwP2Zf0QO/j0OjdMX38XwnuI+Rd1Mwowp4pVvH23dmVh+NIAEbtlLbE1F15eUM0rlUPsBbXfQ==
+"@wdlk/components@3.20.1":
+  version "3.20.1"
+  resolved "https://registry.yarnpkg.com/@wdlk/components/-/components-3.20.1.tgz#b4a5ce5591896d5ba23f82461052729c6f6deb19"
+  integrity sha512-AdK8nAle8yiEfHuxXEX8OnET5CjNJkNZSB9bQj/XPNA7+ZI06fLUUboeGnkZiDWHhXjKWHj93RlUBORc/ZCLBQ==
   dependencies:
-    "@emotion/core" "^10.0.22"
-    "@emotion/styled" "^10.0.27"
-    prismjs "^1.19.0"
-    react "^16.12.0"
-    react-dom "^16.12.0"
+    prismjs "^1.22.0"
     shortid "^2.2.15"
     theme-query "1.5.0"
 
@@ -12511,10 +12507,10 @@ pretty-format@^26.4.2:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-prismjs@^1.19.0:
-  version "1.20.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.20.0.tgz#9b685fc480a3514ee7198eac6a3bf5024319ff03"
-  integrity sha512-AEDjSrVNkynnw6A+B1DsFkd6AVdTnp+/WoUixFRULlCLZVRZlVQMVWio/16jv7G1FscUxQxOQhWwApgbnxr6kQ==
+prismjs@^1.22.0:
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.23.0.tgz#d3b3967f7d72440690497652a9d40ff046067f33"
+  integrity sha512-c29LVsqOaLbBHuIbsTxaKENh1N2EQBOHaWv7gkHN4dgRbxSREqDnDbtFJYdpPauS4YCplMSNCABQ6Eeor69bAA==
   optionalDependencies:
     clipboard "^2.0.0"
 
