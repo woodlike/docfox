@@ -3167,12 +3167,12 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-dom@16.9.8":
-  version "16.9.8"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
-  integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
+"@types/react-dom@16.9.17":
+  version "16.9.17"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.17.tgz#29100cbcc422d7b7dba7de24bb906de56680dd34"
+  integrity sha512-qSRyxEsrm5btPXnowDOs5jSkgT8ldAA0j6Qp+otHUh+xHzy3sXmgNfyhucZjAjkgpdAUw9rJe0QRtX/l+yaS4g==
   dependencies:
-    "@types/react" "*"
+    "@types/react" "^16"
 
 "@types/react@*":
   version "16.9.36"
@@ -3190,6 +3190,15 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/react@^16":
+  version "16.14.34"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.34.tgz#d129324ffda312044e1c47aab18696e4ed493282"
+  integrity sha512-b99nWeGGReLh6aKBppghVqp93dFJtgtDOzc8NXM6hewD8PQ2zZG5kBLgbx+VJr7Q7WBMjHxaIl3dwpwwPIUgyA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
 "@types/rimraf@^2.0.2":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-2.0.4.tgz#403887b0b53c6100a6c35d2ab24f6ccc042fec46"
@@ -3197,6 +3206,11 @@
   dependencies:
     "@types/glob" "*"
     "@types/node" "*"
+
+"@types/scheduler@*":
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
+  integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
