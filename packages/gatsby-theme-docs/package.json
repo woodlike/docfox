@@ -50,7 +50,7 @@
     "babel-plugin-pluck-imports": "0.0.1",
     "babel-plugin-remove-export-keywords": "1.6.18",
     "babel-preset-gatsby": "0.5.10",
-    "eslint-plugin-mdx": "1.8.2",
+    "eslint-plugin-mdx": "1.17.1",
     "gatsby": "2.24.63",
     "jest": "26.4.2",
     "react": "16.13.1",
